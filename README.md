@@ -16,3 +16,5 @@ You will also see any lint errors in the console.
 # used Express.js, MongoDB and Node.js to handle backend 
 
 # Material UI for icons 
+
+for assuming the in real time access to chat messages we will use pusher to make messages close to the client so we have pusher in backend and pusher-js in frontend

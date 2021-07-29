@@ -11,6 +11,8 @@ import Messages from "./dbMessages.js";
 const app = express();
 const port = process.env.PORT || 9000;
 
+console.log(process.env);
+
 const pusher = new Pusher({
     appId: "1240288",
     key: "a8d58b9b008b2fa028c1",
@@ -82,8 +84,6 @@ app.get('/messages/sync', (req, res) => {
     });
 });
 
-
-
 app.post('/messages/new', (req, res) => {
     const dbMessage = req.body
 
@@ -95,6 +95,14 @@ app.post('/messages/new', (req, res) => {
         }
     });
 });
+
+//just for testing this shit how it works 
+// app.get('/test', (req, res) => {
+//     console.log(req.query);
+//     res.status(200).send('just a test ');
+// })
+
+
 
 //listener 
 app.listen(port, () => console.log(`Listening on localhost: ${port}`));
