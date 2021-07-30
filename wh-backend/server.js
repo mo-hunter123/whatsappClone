@@ -6,12 +6,11 @@ import express from "express";
 import mongoose from "mongoose";
 import Pusher from "pusher";
 import Messages from "./dbMessages.js";
+import cors from 'cors';
 
 //application configuration 
 const app = express();
 const port = process.env.PORT || 9000;
-
-console.log(process.env);
 
 const pusher = new Pusher({
     appId: "1240288",
@@ -48,9 +47,6 @@ db.once('open', () => {
             console.log("Error triggering pusher");
         }
     });
-
-    
-    
 });
 
 
@@ -74,7 +70,7 @@ mongoose.connect(connection_url, {
 app.get('/', (req, res) => res.status(200).send('hello world'));
 
 
-app.get('/messages/sync', (req, res) => {
+app.get('/messages/sync', cors(), (req, res) => {
     Messages.find((err, data) => {
         if (err) {
             res.status(500).send(err)
@@ -84,7 +80,7 @@ app.get('/messages/sync', (req, res) => {
     });
 });
 
-app.post('/messages/new', (req, res) => {
+app.post('/messages/new', cors(), (req, res) => {
     const dbMessage = req.body
 
     Messages.create(dbMessage, (err, data) => {
