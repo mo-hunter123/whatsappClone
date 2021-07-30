@@ -3,7 +3,7 @@ import './App.css';
 import Chat from './Chat';
 import Sidebar from './Sidebar';
 import Pusher from 'pusher-js';
-import axios from './axios.js'; //axios from our local
+import axios from 'axios'; //axios from our local
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
 
   //this useEffect will be responsible for fetching all the initial information 
   useEffect(() => {
-    axios.get("/messages/sync").then((response) => {
+    axios.get("http://localhost:9000/messages/sync").then((response) => {
       setMessages(response.data);
     });
 

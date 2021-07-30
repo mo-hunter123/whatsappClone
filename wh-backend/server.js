@@ -13,6 +13,7 @@ import connection_url from './dbConfig.js'
 const app = express();
 const port = process.env.PORT || 9000;
 
+
 const pusher = new Pusher({
     appId: "1240288",
     key: "a8d58b9b008b2fa028c1",
@@ -54,6 +55,7 @@ db.once('open', () => {
 
 //middleware 
 app.use(express.json());
+app.use(cors());
 
 //database config
 

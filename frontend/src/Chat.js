@@ -3,7 +3,7 @@ import { AttachFile, InsertEmoticon, MoreVert, SearchOutlined } from '@material-
 import MicIcon from '@material-ui/icons/Mic'
 import React, { useState } from 'react'
 import "./Chat.css"
-import axios from './axios.js';
+import axios from 'axios';
 
 
 function Chat({ messages }) {
@@ -13,7 +13,7 @@ function Chat({ messages }) {
     const sendMessage = async (e) => {
         e.preventDefault();
 
-        await axios.post("/messages/new", {
+        await axios.post("http://localhost:9000/messages/new", {
             message: input,
             name: "someone", 
             timestamp: "now", 
