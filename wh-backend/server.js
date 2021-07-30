@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import Pusher from "pusher";
 import Messages from "./dbMessages.js";
 import cors from 'cors';
+import connection_url from './dbConfig.js'
 
 //application configuration 
 const app = express();
@@ -55,7 +56,6 @@ db.once('open', () => {
 app.use(express.json());
 
 //database config
-const connection_url = 'mongodb+srv://admin:LHA3tdQUlh1IWWGU@cluster0.xi42v.mongodb.net/whCloneDB?retryWrites=true&w=majority'
 
 mongoose.connect(connection_url, {
     useCreateIndex: true,

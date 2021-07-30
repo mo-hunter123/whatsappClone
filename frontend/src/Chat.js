@@ -3,7 +3,7 @@ import { AttachFile, InsertEmoticon, MoreVert, SearchOutlined } from '@material-
 import MicIcon from '@material-ui/icons/Mic'
 import React, { useState } from 'react'
 import "./Chat.css"
-import axios from 'axios';
+import axios from './axios.js';
 
 
 function Chat({ messages }) {
@@ -13,14 +13,14 @@ function Chat({ messages }) {
     const sendMessage = async (e) => {
         e.preventDefault();
 
-        axios.post("http://localhost:9000/messages/new", {
+        await axios.post("/messages/new", {
             message: input,
             name: "someone", 
             timestamp: "now", 
             received: false
-        })
-        setInput('');
-    }
+        });
+        setInput("");
+    };
 
 
     return (
@@ -45,17 +45,20 @@ function Chat({ messages }) {
             </div>
             <div className="chat__body">
 
-                {messages.map((message) => (
-                    <p className={`chat__message ${message.received && "chat__received"}`}>
-                        <span className="chat__name">{message.name}</span>
-                        {message.message}
-                        <span className="chat__timestamp">
-                            {message.timestamp}
-                        </span>
-                    </p>
-                ))}
+                {
+                    Object.keys(messages).map(function(key, index) {
 
-                
+                        return(
+                            <p className={`chat__message ${messages[key].received && "chat__received"}`}>
+                                <span className="chat__name">{messages[key].name}</span>
+                                {messages[key].message}
+                                <span className="chat__timestamp">
+                                    {messages[key].timestamp}
+                                </span>
+                            </p>
+                        )                  
+                    })
+                }
             </div>
 
             <div className="chat__footer">
