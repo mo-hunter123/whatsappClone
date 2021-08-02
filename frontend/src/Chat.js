@@ -17,7 +17,7 @@ function Chat({ messages }) {
             message: input,
             name: "someone", 
             timestamp: "now", 
-            received: false
+            received: true
         });
         setInput("");
     };
@@ -49,7 +49,7 @@ function Chat({ messages }) {
                     Object.keys(messages).map(function(key, index) {
 
                         return(
-                            <p className={`chat__message ${messages[key].received && "chat__received"}`}>
+                            <p className={`chat__message ${messages[key].received && "chat__receiver"}`}>
                                 <span className="chat__name">{messages[key].name}</span>
                                 {messages[key].message}
                                 <span className="chat__timestamp">
