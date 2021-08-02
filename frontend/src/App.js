@@ -6,10 +6,12 @@ import Pusher from 'pusher-js';
 import axios from 'axios'; //axios from our local
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import Login from './Login';
 
 function App() {
 
   const [messages, setMessages] = useState([]);
+  const [user, setUser] = useState(null);
 
   //instead of fetching all the messages each time we have a new message inserted into database we gonna fetch them all at the begining and then once a message added we will push it to the messsages array 
 
@@ -49,30 +51,33 @@ function App() {
 
   console.log(messages);
 
-
   return (
+
+
     <div className="app">
-      <div className="app__body">
 
-        <Router>
-          <Sidebar />
-          <Route path="/rooms/:roomId">
-            
-            <Chat messages={messages} />
-          </Route>    
-          <Route path="/">
-            
-            
-          </Route>    
-          
-            
+      {!user ? (
+        <Login />
+      ): (
+        <div className="app__body">
 
+            <Router>
+              <Sidebar />
+              <Route path="/rooms/:roomId">
                 
-          
-        </Router>
+                <Chat messages={messages} />
+              </Route>    
+              <Route path="/">
+                
+              </Route>    
+            </Router>
 
-      </div>
+          </div>
+        
+      )}
     </div>
+
+      
   );
 }
 
