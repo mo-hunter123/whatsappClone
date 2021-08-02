@@ -23,7 +23,8 @@ function Sidebar() {
             })
             ))
         ))
-
+        
+        //in each time we load our message it's a good practice to stop the subscription 
         return () => {
             unsubscribe();
         }

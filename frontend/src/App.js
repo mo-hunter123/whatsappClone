@@ -5,6 +5,8 @@ import Sidebar from './Sidebar';
 import Pusher from 'pusher-js';
 import axios from 'axios'; //axios from our local
 
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
 function App() {
 
   const [messages, setMessages] = useState([]);
@@ -52,12 +54,24 @@ function App() {
     <div className="app">
       <div className="app__body">
 
-        <Sidebar />
-        <Chat messages={messages} />
+        <Router>
+          <Sidebar />
+          <Route path="/rooms/:roomId">
+            
+            <Chat messages={messages} />
+          </Route>    
+          <Route path="/">
+            
+            
+          </Route>    
+          
+            
+
+                
+          
+        </Router>
 
       </div>
-
-
     </div>
   );
 }

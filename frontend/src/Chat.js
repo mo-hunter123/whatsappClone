@@ -4,10 +4,12 @@ import MicIcon from '@material-ui/icons/Mic'
 import React, { useState } from 'react'
 import "./Chat.css"
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 
 function Chat({ messages }) {
     const [input, setInput] = useState("");
+    // const {roomId} = useParams();
 
 
     const sendMessage = async (e) => {
